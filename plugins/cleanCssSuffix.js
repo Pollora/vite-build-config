@@ -1,3 +1,9 @@
+/**
+ * Vite plugin to clean up CSS file names ending with '2.css' in the build output.
+ *
+ * Some build processes may generate duplicate or suffixed CSS files (e.g., 'index2.css').
+ * This plugin renames any '2.css' files to '.css' to ensure consistent asset naming.
+ */
 export default function cleanCssSuffixPlugin() {
     return {
       name: 'clean-css-suffix',

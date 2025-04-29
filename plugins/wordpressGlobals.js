@@ -3,6 +3,13 @@ import fs from 'fs';
 import crypto from 'crypto';
 import { wpPackages } from '../constants.js';
 
+/**
+ * Vite plugin to transform @wordpress/* imports to global variables and generate asset files.
+ *
+ * This plugin rewrites ES module imports from @wordpress/* packages to use WordPress global variables (e.g., wp.blocks),
+ * removes CSS imports, and generates PHP asset files listing dependencies and content hashes for each block entry.
+ * This is essential for WordPress block development, where scripts/styles are enqueued via PHP and depend on global handles.
+ */
 export default function wordpressGlobalsPlugin() {
 	// Track dependencies for each block
 	const blockDependencies = new Map();

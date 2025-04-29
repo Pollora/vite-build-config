@@ -3,6 +3,11 @@ import path from 'path';
 import { glob } from 'glob';
 import { defaultBlocksPath } from './constants.js';
 
+/**
+ * Returns a list of all subdirectories (blocks) in the given blocksPath.
+ * Ensures the directory exists (creates it if missing).
+ * Used to discover all block folders for build processing.
+ */
 export function getBlockDirectories(blocksPath) {
     if (!fs.existsSync(blocksPath)) {
         fs.mkdirSync(blocksPath, { recursive: true });
@@ -12,16 +17,29 @@ export function getBlockDirectories(blocksPath) {
         .filter(file => fs.statSync(path.join(blocksPath, file)).isDirectory());
 }
 
+/**
+ * Finds all files matching the given glob patterns in a directory.
+ * Used to locate PHP, JSON, or other files for copying or processing.
+ * Returns absolute paths.
+ */
 export async function getBlockFiles(blockPath, patterns) {
     return glob(patterns, { cwd: blockPath, absolute: true });
 }
 
+/**
+ * Ensures a directory exists, creating it recursively if needed.
+ * Used before writing files to guarantee the target path is valid.
+ */
 export function ensureDir(dir) {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
     }
 }
 
+/**
+ * Copies a list of files from the sourceDir to the buildDir, preserving relative paths.
+ * Used to move PHP/JSON files for each block into the build output.
+ */
 export function copyFilesToBuild(files, blockName, sourceDir, buildDir) {
     files.forEach(file => {
         const relativePath = path.relative(sourceDir, file);
@@ -31,6 +49,11 @@ export function copyFilesToBuild(files, blockName, sourceDir, buildDir) {
     });
 }
 
+/**
+ * Computes the Vite/Rollup input object for all block entry points.
+ * Scans each block for index.js, view.js, style.scss, and editor.scss (or .css variants).
+ * Returns an object mapping output paths to source files for use in Vite config.
+ */
 export function computeBlockInputs(blocksPaths) {
     const inputs = {};
     blocksPaths.forEach(blockName => {

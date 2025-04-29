@@ -2,6 +2,13 @@ import path from 'path';
 import fs from 'fs';
 import { BUILDFOLDER, BLOCKSFOLDER } from '../constants.js';
 
+/**
+ * Vite plugin to generate a PHP manifest file for all built WordPress blocks.
+ *
+ * This plugin scans the build output for each block's block.json, collects their data,
+ * and writes a PHP file (blocks-manifest.php) that returns an array of all block definitions.
+ * This allows PHP code to easily access block metadata after the build.
+ */
 export default function createBlocksManifestPlugin(blocksPaths) {
     return {
         name: 'create-blocks-manifest',
@@ -10,9 +17,10 @@ export default function createBlocksManifestPlugin(blocksPaths) {
             const manifest = {};
             const buildBlocksPath = path.join(BUILDFOLDER, BLOCKSFOLDER);
 
-            // Ensure all blocks are built before creating manifest
+            // Wait briefly to ensure all blocks are built before creating manifest
             await new Promise(resolve => setTimeout(resolve, 1000));
 
+            // Collect block.json data for each block
             for (const blockName of blocksPaths) {
                 const blockJsonPath = path.join(buildBlocksPath, blockName, 'block.json');
 
@@ -22,7 +30,7 @@ export default function createBlocksManifestPlugin(blocksPaths) {
                 }
             }
 
-            // Convert JSON to PHP array notation
+            // Helper to convert JS object to PHP array notation
             const convertToPhpArray = (obj, depth = 0) => {
                 const indent = '\t'.repeat(depth);
                 const innerIndent = '\t'.repeat(depth + 1);
@@ -46,7 +54,7 @@ export default function createBlocksManifestPlugin(blocksPaths) {
                 }
             };
 
-            // Create the PHP manifest file
+            // Write the PHP manifest file
             const manifestContent = `<?php\n// This file is generated. Do not modify it manually.\nreturn ${convertToPhpArray(manifest)};\n`;
 
             const manifestPath = path.join(BUILDFOLDER, BLOCKSFOLDER, 'blocks-manifest.php');

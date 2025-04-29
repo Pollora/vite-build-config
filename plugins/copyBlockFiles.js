@@ -2,6 +2,13 @@ import path from 'path';
 import { BUILDFOLDER, BLOCKSFOLDER, defaultBlocksPath } from '../constants.js';
 import { ensureDir, getBlockFiles, copyFilesToBuild } from '../utils.js';
 
+/**
+ * Vite plugin to copy PHP and JSON files for each block into the build output.
+ *
+ * After the Vite build completes, this plugin finds all PHP and JSON files in each block's source directory
+ * and copies them to the corresponding build directory. This ensures that server-side files are available
+ * alongside the built JS/CSS assets for each block.
+ */
 export default function createCopyBlockFilesPlugin(blocksPaths) {
     return {
         name: 'copy-block-files',
