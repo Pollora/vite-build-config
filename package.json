@@ -1,37 +1,33 @@
 {
-  "name": "@pollora/vite-build-config",
-  "version": "0.0.1",
-  "description": "Reusable Vite build configuration and plugins for WordPress block development.",
-  "main": "./index.js",
-  "module": "./index.js",
-  "exports": {
-    ".": "./index.js",
-    "./plugins": "./plugins/index.js",
-    "./constants": "./constants.js",
-    "./utils": "./utils.js",
-    "./vite.defaultconfig": "./vite.defaultconfig.js"
-  },
-  "keywords": [
-    "vite",
-    "wordpress",
-    "blocks",
-    "plugin",
-    "build",
-    "pollora"
-  ],
-  "author": "Jeremy DESVAUX DE MARIGNY <jeremy@jdmweb.com>",
-  "license": "MIT",
-  "type": "module",
-  "peerDependencies": {
-    "vite": ">=4.0.0",
-    "@vitejs/plugin-react": ">=4.0.0",
-    "@babel/preset-react": ">=7.0.0"
-  },
-  "dependencies": {
-    "glob": "^10.0.0"
-  }
-<<<<<<< HEAD
+	"name": "@pollora/vite-build-config",
+	"version": "0.0.1",
+	"description": "Reusable Vite build configuration and plugins for WordPress block development.",
+	"main": "./index.js",
+	"module": "./index.js",
+	"exports": {
+		".": "./index.js",
+		"./plugins": "./plugins/index.js",
+		"./constants": "./constants.js",
+		"./utils": "./utils.js",
+		"./vite.defaultconfig": "./vite.defaultconfig.js"
+	},
+	"keywords": [
+		"vite",
+		"wordpress",
+		"blocks",
+		"plugin",
+		"build",
+		"pollora"
+	],
+	"author": "Jeremy DESVAUX DE MARIGNY <jeremy@jdmweb.com>",
+	"license": "MIT",
+	"type": "module",
+	"peerDependencies": {
+		"vite": ">=4.0.0",
+		"@vitejs/plugin-react": ">=4.0.0",
+		"@babel/preset-react": ">=7.0.0"
+	},
+	"dependencies": {
+		"glob": "^10.0.0"
+	}
 }
-=======
-}
->>>>>>> develop
