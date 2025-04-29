@@ -43,8 +43,12 @@ In your vite config file, import and use the default pollora vite config object,
 import { defineConfig } from "vite";
 import { defaultConfig } from "pollora-vite-build-config";
 
+// For npm readme, @see : https://www.npmjs.com/package/@pollora/vite-build-config
+// For available constants, @see : https://github.com/Pollora/vite-build-config/blob/main/constants.js
+// For available utility functions, @see : https://github.com/Pollora/vite-build-config/blob/main/utils.js
+// For available plugins, @see : https://github.com/Pollora/vite-build-config/tree/main/plugins
+
 //Replace config values here,
-// @see : https://github.com/Pollora/documentation
 const config = {
     ...defaultConfig,
 };
@@ -54,4 +58,4 @@ export default defineConfig(config);
 
 ## License
 
-MIT (or your chosen license) 
+MIT
