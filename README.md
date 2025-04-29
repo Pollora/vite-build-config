@@ -18,7 +18,13 @@ This package provides a set of reusable Vite plugins, utilities, and configurati
 Clone or install this package into your project:
 
 ```sh
-npm install pollora-vite-build-config
+npm install @pollora/vite-build-config
+```
+
+or with Yarn:
+
+```sh
+yarn add @pollora/vite-build-config
 ```
 
 > **Note:**
