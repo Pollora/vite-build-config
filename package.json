@@ -1,5 +1,5 @@
 {
-  "name": "pollora-vite-build-config",
+  "name": "@pollora/vite-build-config",
   "version": "0.0.1",
   "description": "Reusable Vite build configuration and plugins for WordPress block development.",
   "main": "./index.js",
@@ -30,4 +30,4 @@
   "dependencies": {
     "glob": "^10.0.0"
   }
-} 
+}
