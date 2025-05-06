@@ -56,6 +56,30 @@ const config = {
 export default defineConfig(config);
 ```
 
+If you want to use tailwindcss instead of sass, you can do something like this:
+
+```js
+import { defineConfig } from "vite";
+import tailwindcss from '@tailwindcss/vite';
+
+import {
+    defaultConfig,
+} from "@pollora/vite-build-config";
+
+// Merge with default config from the package
+const config = {
+    ...defaultConfig,
+    ...{
+        plugins: [
+            tailwindcss(),
+            ...defaultConfig.plugins
+        ],
+    }
+};
+
+export default defineConfig(config);
+```
+
 ## License
 
 MIT
